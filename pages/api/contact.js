@@ -18,12 +18,12 @@ const handler = async (req, res) => {
       return;
     }
 
-    const MONGOBD_URL = `mongodb+srv://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_CLUSTER}.rjv3f8p.mongodb.net?retryWrites=true&w=majority`;
+    const MONGOBD_URL = `mongodb+srv://${process.env.NEXT_PUBLIC_MONGODB_USERNAME}:${process.env.NEXT_PUBLIC_MONGODB_PASSWORD}@${process.env.NEXT_PUBLIC_MONGODB_CLUSTER}.rjv3f8p.mongodb.net?retryWrites=true&w=majority`;
 
     try {
       client = new MongoClient(MONGOBD_URL);
       await client.connect();
-      db = client.db(process.env.MONGODB_DATABASE);
+      db = client.db(process.env.NEXT_PUBLIC_MONGODB_DATABASE);
       const collection = db.collection('contact-messages');
       await collection.insertOne({ email, name, content });
 
